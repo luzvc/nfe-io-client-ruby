@@ -20,20 +20,22 @@ module Nfe
         params = nil
       end
 
-      begin
-        payload = params.to_json
-        response = RestClient::Request.new(
-                    method: method,
-                    url: url,
-                    payload: payload,
-                    headers: {
-                      content_type: 'application/json',
-                      accept: '*/*',
-                      authorization: api_key,
-                      user_agent: Nfe.configuration.user_agent
-                    }).execute
+      payload = (params != nil) ? params.to_json : ''
+      request = RestClient::Request.new(
+                  method: method,
+                  url: url,
+                  payload: payload,
+                  headers: {
+                    content_type: 'application/json',
+                    accept: 'application/json',
+                    authorization: api_key,
+                    user_agent: Nfe.configuration.user_agent
+                  })
 
+      begin
+        response = request.execute
       rescue RestClient::ExceptionWithResponse => e
+        # byebug
         if rcode = e.http_code and rbody = e.http_body
           rbody = JSON.parse(rbody)
           rbody = Util.symbolize_names(rbody)
@@ -45,11 +47,43 @@ module Nfe
       rescue RestClient::Exception => e
         raise e
       end
-      JSON.parse(response.to_str)
+      JSON.parse(response.to_s)
     end
 
     def self.included(base)
       base.extend(ApiResource)
     end
+
+    def api_request_file(url, method, params=nil)
+      api_key = Nfe.access_keys
+      url = "#{Nfe.configuration.url}#{url}?api_key=#{api_key}"
+
+      request = RestClient::Request.new(
+        method: method,
+        url: url,
+        headers: {
+          user_agent: Nfe.configuration.user_agent
+        }
+      )
+
+      begin
+        response = request.execute
+      rescue RestClient::ExceptionWithResponse => e
+        # byebug
+        if rcode = e.http_code and rbody = e.http_body
+          rbody = JSON.parse(rbody)
+          rbody = Util.symbolize_names(rbody)
+
+         raise NfeError.new(rcode, rbody, rbody, rbody[:message])
+        else
+          raise e
+        end
+      rescue RestClient::Exception => e
+        raise e
+      end
+
+     response
+    end
+
   end
 end
