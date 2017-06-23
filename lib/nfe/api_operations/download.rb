@@ -1,5 +1,3 @@
-require 'byebug'
-
 module Nfe
   module ApiOperations
     module Download
