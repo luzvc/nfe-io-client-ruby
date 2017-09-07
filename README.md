@@ -80,6 +80,18 @@ invoice.body
 send_data(invoice.body, filename: 'invoice.pdf', type: 'application/pdf')
 ```
 
+### Como validar o Webhook?
+```ruby
+def request_is_authentic?
+  body = request.body.read
+  signature = request.headers['X-NFEIO-Signature']
+  
+  hash = 'sha1=' + Base64.strict_encode64(OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha1'), ENV.fetch("NFEIO_WEBHOOK_SECRET"), body))
+  
+  ActiveSupport::SecurityUtils.secure_compare(hash, signature)
+end
+```
+
 ## Contribuir
 
 Envio de bugs e pull requests são muito bem vindos no https://github.com/nfe/client-ruby.
