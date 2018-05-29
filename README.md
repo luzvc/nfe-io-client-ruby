@@ -80,14 +80,26 @@ invoice.body
 send_data(invoice.body, filename: 'invoice.pdf', type: 'application/pdf')
 ```
 
+### Cancelar Nota Fiscal
+
+```ruby
+# Define a API Key, conforme está no painel
+Nfe.api_key('c73d49f9649046eeba36dcf69f6334fd')
+# ID da empresa, você encontra no painel
+Nfe::ServiceInvoice.company_id("55df4dc6b6cd9007e4f13ee8")
+# O parâmetro é o ID da nota
+invoice = Nfe::ServiceInvoice.cancel("59443a0e2a8b6806986d7a2d")
+# A resposta são os dados da nota com a mudança de estado para "WaitingSendCancel"
+```
+
 ### Como validar o Webhook?
 ```ruby
 def request_is_authentic?
   body = request.body.read
   signature = request.headers['X-NFEIO-Signature']
-  
+
   hash = 'sha1=' + Base64.strict_encode64(OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha1'), ENV.fetch("NFEIO_WEBHOOK_SECRET"), body))
-  
+
   ActiveSupport::SecurityUtils.secure_compare(hash, signature)
 end
 ```
