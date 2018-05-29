@@ -4,7 +4,7 @@ module Nfe
     include ApiOperations::Create
     include ApiOperations::List
     include ApiOperations::Retrieve
-    include ApiOperations::Delete
+    include ApiOperations::Cancel
     include ApiOperations::Update
     include ApiOperations::Download
 
@@ -17,7 +17,7 @@ module Nfe
     end
 
     def url
-      "#{self.class.url}/#{self.id}"
+      self.class.url
     end
 
     def self.create_from(params)
