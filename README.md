@@ -2,7 +2,7 @@
 
 ## Onde acessar a documentação da API?
 
-> Acesse a [nossa documentação](/doc/rest-api/nfe-v1) para mais detalhes e referências.
+> Acesse a [nossa documentação](https://nfe.io/doc/rest-api/nfe-v1) para mais detalhes e referências.
 
 ## Como realizar a instalação do pacote?
 
