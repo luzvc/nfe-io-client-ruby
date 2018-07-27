@@ -1,26 +1,31 @@
-[![Build Status](https://travis-ci.org/nfe/client-ruby.svg?branch=master)](https://travis-ci.org/nfe/client-ruby.svg?branch=master)
+# Cliente Ruby para emissão de notas fiscais - NFe.io
 
-# NFe.io para Ruby
+## Onde acessar a documentação da API?
 
-## Instalação
+> Acesse a [nossa documentação](/doc/rest-api/nfe-v1) para mais detalhes e referências.
 
-Incluir essa linha no Gemfile da sua aplicação:
+## Como realizar a instalação do pacote?
+
+Para executar a instalação do nosso pacote, você deverá incluir essa linha no Gemfile da sua aplicação:
 
 ```ruby
 gem 'nfe-io'
 ```
 
-E depois execute:
+E depois executar:
 
     $ bundle
 
-Ou instale diretamente via comando:
+Ou se preferir, instale diretamente via comando:
 
     $ gem install nfe-io
 
 ## Exemplos de uso
 
-### Emitir nota fiscal
+> Em construção!
+
+### Como emitir uma Nota Fiscal de Serviço?
+Abaixo, temos um código-exemplo para realizar uma Emissão de Nota Fiscal de Serviço:
 
 ```ruby
 # Define a API Key, conforme está no painel
@@ -63,7 +68,24 @@ service_params = {
 invoice_create_result = Nfe::ServiceInvoice.create(customer_params.merge(service_params))
 ```
 
-### Download da Nota Fiscal
+### Como cancelar uma nota?
+Abaixo, temos um código-exemplo para efetuar o cancelamento de uma nota: 
+
+```ruby
+# Define a API Key, conforme está no painel
+Nfe.api_key('c73d49f9649046eeba36dcf69f6334fd')
+# ID da empresa, você encontra no painel
+Nfe::ServiceInvoice.company_id("55df4dc6b6cd9007e4f13ee8")
+# O parâmetro é o ID da nota
+invoice = Nfe::ServiceInvoice.cancel("59443a0e2a8b6806986d7a2d")
+# A resposta são os dados da nota com a mudança de estado para "WaitingSendCancel"
+```
+
+### Criar uma Empresa para Emissão de Notas
+>Em construção!
+
+### Como efetuar o download de uma nota em PDF?
+Abaixo, temos um código exemplo para baixar uma nota em PDF:
 
 ```ruby
 # Define a API Key, conforme está no painel
@@ -80,18 +102,6 @@ invoice.body
 send_data(invoice.body, filename: 'invoice.pdf', type: 'application/pdf')
 ```
 
-### Cancelar Nota Fiscal
-
-```ruby
-# Define a API Key, conforme está no painel
-Nfe.api_key('c73d49f9649046eeba36dcf69f6334fd')
-# ID da empresa, você encontra no painel
-Nfe::ServiceInvoice.company_id("55df4dc6b6cd9007e4f13ee8")
-# O parâmetro é o ID da nota
-invoice = Nfe::ServiceInvoice.cancel("59443a0e2a8b6806986d7a2d")
-# A resposta são os dados da nota com a mudança de estado para "WaitingSendCancel"
-```
-
 ### Como validar o Webhook?
 ```ruby
 def request_is_authentic?
@@ -103,40 +113,3 @@ def request_is_authentic?
   ActiveSupport::SecurityUtils.secure_compare(hash, signature)
 end
 ```
-
-## Contribuir
-
-Envio de bugs e pull requests são muito bem vindos no https://github.com/nfe/client-ruby.
-
-### Como atualizar o pacote
-
-- Alterar versão do pacote no arquivo /lib/nfe/version.rb
-- Comitar nova versão, com uma descrição como abaixo
-
-```bash
-git add lib/nfe/version.rb
-git commit -m 'Bump version 0.3.0'
-```
-- Criar git tag
-
-```bash
-git tag 0.3.0
-```
-
-- Executar gem build, repare que um novo arquivo será criado, com a versão do pacote alterada acima
-
-```bash
-gem build nfe.gemspec
-```
-
-- Executar gem push do pacote gem criado
-
-```ruby
-gem push nfe-io-0.3.0.gem
-```
-
-## License
-
-Originalmente criado pela equipe da [Pluga](https://github.com/PlugaDotCo).
-
-Esta gem é open source sob os termos da [Licença MIT](http://opensource.org/licenses/MIT).
