@@ -7,9 +7,11 @@ describe Nfe::LegalPeople do
   end
 
   it 'should list all LegalPeople' do
-    natural_peoples_list = Nfe::LegalPeople.list_all
-    expect(natural_peoples_list.object).to eq('list')
-    expect(natural_peoples_list.data.size).to be >= 0
+    VCR.use_cassette("legal_people/list_all") do
+      natural_peoples_list = Nfe::LegalPeople.list_all
+      expect(natural_peoples_list.object).to eq('list')
+      expect(natural_peoples_list.data.size).to be >= 0
+    end
   end
 
   it 'should retrieve a LegalPeople' do
@@ -19,11 +21,15 @@ describe Nfe::LegalPeople do
 
     service_params = { cityServiceCode: '0107', description: 'Manutenção e suporte técnico.', servicesAmount: 0.15 }
 
-    Nfe::ServiceInvoice.company_id("55df4dc6b6cd9007e4f13ee8")
-    nfe = Nfe::ServiceInvoice.create(customer_params.merge(service_params))
+    VCR.use_cassette("legal_people/create_service_invoice") do
+      Nfe::ServiceInvoice.company_id("55df4dc6b6cd9007e4f13ee8")
+      Nfe::ServiceInvoice.create(customer_params.merge(service_params))
+    end
 
-    natural_people = Nfe::LegalPeople.retrieve("55ef27f8440c3b0b84cebc2d")
-    expect(natural_people.id).to eq("55ef27f8440c3b0b84cebc2d")
-    expect(natural_people.name).to eq("Nome da Empresa")
+    VCR.use_cassette("legal_people/retrieve") do
+      natural_people = Nfe::LegalPeople.retrieve("55ef27f8440c3b0b84cebc2d")
+      expect(natural_people.id).to eq("55ef27f8440c3b0b84cebc2d")
+      expect(natural_people.name).to eq("Nome da Empresa")
+    end
   end
 end

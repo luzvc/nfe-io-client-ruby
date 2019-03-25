@@ -2,13 +2,13 @@ module Nfe
   module ApiOperations
     module Cancel
       def cancel(nfe_id)
-        method = :delete
-        response = api_request("#{url}/#{nfe_id}", method)
-        create_from(response)
+        response = api_request endpoint: "#{endpoint}/#{nfe_id}",
+          method: :delete, api_version: api_version
+        create_from response
       end
 
       def self.included(base)
-        base.extend(Cancel)
+        base.extend Cancel
       end
     end
   end

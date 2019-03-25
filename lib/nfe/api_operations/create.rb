@@ -2,13 +2,15 @@ module Nfe
   module ApiOperations
     module Create
       def create(params)
-        method = :post
-        response = api_request(url, method, params)
-        create_from(response)
+        response = api_request endpoint: endpoint, method: :post,
+          params: params, api_version: api_version
+        p "*"*80
+        p response
+        create_from response
       end
 
       def self.included(base)
-        base.extend(Create)
+        base.extend Create
       end
     end
   end

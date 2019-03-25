@@ -1,0 +1,72 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.nfe.io/v1/companies?key=value
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - NFe.io Ruby Client v0.3.2
+      Content-Type:
+      - application/json
+      Authorization:
+      - e12cmDevG5iLhSd9Y7BOpxynL86Detjd2R1D5jsP5UGXA8gwxug0Vojl3H9TIzBpbhI
+      Content-Length:
+      - '0'
+      Host:
+      - api.nfe.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '1403'
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      Date:
+      - Wed, 12 Jun 2019 19:10:35 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ew0KICAiY29tcGFuaWVzIjogWw0KICAgIHsNCiAgICAgICJpZCI6ICIwMDAw
+        MDAwMDAwMDAwMDAwMDAwMDAwMDAiLA0KICAgICAgIm5hbWUiOiAiQ09NUEFO
+        WSBOQU1FIExUREEiLA0KICAgICAgInRyYWRlTmFtZSI6ICJDT01QQU5ZIENP
+        IiwNCiAgICAgICJmZWRlcmFsVGF4TnVtYmVyIjogMTIzNDU2Nzg5MDEyMzQs
+        DQogICAgICAiYWRkcmVzcyI6IHsNCiAgICAgICAgInBvc3RhbENvZGUiOiAi
+        MDAwMDAtMDAwIiwNCiAgICAgICAgInN0cmVldCI6ICJSdWEgZG9zIEJvYm9z
+        IiwNCiAgICAgICAgIm51bWJlciI6ICIxIiwNCiAgICAgICAgImFkZGl0aW9u
+        YWxJbmZvcm1hdGlvbiI6ICIiLA0KICAgICAgICAiZGlzdHJpY3QiOiAiQmFp
+        cnJvIiwNCiAgICAgICAgImNpdHkiOiB7DQogICAgICAgICAgImNvZGUiOiAi
+        MDAwMDAwMCIsDQogICAgICAgICAgIm5hbWUiOiAiQ2lkYWRlIg0KICAgICAg
+        ICB9LA0KICAgICAgICAic3RhdGUiOiAiVUYiDQogICAgICB9LA0KICAgICAg
+        InRheFJlZ2ltZSI6ICJTaW1wbGVzTmFjaW9uYWwiLA0KICAgICAgInNwZWNp
+        YWxUYXhSZWdpbWUiOiAiTWljcm9lbXByZXNhcmlvRW1wcmVzYVBlcXVlbm9Q
+        b3J0ZSIsDQogICAgICAibGVnYWxOYXR1cmUiOiAiU29jaWVkYWRlRW1wcmVz
+        YXJpYUxpbWl0YWRhIiwNCiAgICAgICJlY29ub21pY0FjdGl2aXRpZXMiOiBb
+        XSwNCiAgICAgICJyZWdpb25hbFRheE51bWJlciI6IDEyMzQ1Njc4LA0KICAg
+        ICAgIm11bmljaXBhbFRheE51bWJlciI6ICIwMDAwMDAwMCIsDQogICAgICAi
+        cnBzU2VyaWFsTnVtYmVyIjogIklPIiwNCiAgICAgICJycHNOdW1iZXIiOiAx
+        LA0KICAgICAgImlzc1JhdGUiOiAwLjAsDQogICAgICAiZW52aXJvbm1lbnQi
+        OiAiRGV2ZWxvcG1lbnQiLA0KICAgICAgImZpc2NhbFN0YXR1cyI6ICJBY3Rp
+        dmUiLA0KICAgICAgImNlcnRpZmljYXRlIjogew0KICAgICAgICAidGh1bWJw
+        cmludCI6ICIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw
+        MDAwIiwNCiAgICAgICAgIm1vZGlmaWVkT24iOiAiMjAxOS0wMS0wMVQwMDow
+        MDowMC4wMDAwMDAwKzAwOjAwIiwNCiAgICAgICAgImV4cGlyZXNPbiI6ICIy
+        MDE5LTEyLTMxVDIzOjU5OjU5KzAwOjAwIiwNCiAgICAgICAgInN0YXR1cyI6
+        ICJBY3RpdmUiDQogICAgICB9LA0KICAgICAgImNyZWF0ZWRPbiI6ICIyMDE5
+        LTAxLTAxVDAwOjAwOjAwLjAwMDAwMDArMDA6MDAiLA0KICAgICAgIm1vZGlm
+        aWVkT24iOiAiMjAxOS0wMS0wMVQwMDowMDowMC4wMDAwMDAwKzAwOjAwIg0K
+        ICAgIH0NCiAgXSwNCiAgInRvdGFsUmVzdWx0cyI6IDEsDQogICJ0b3RhbFBh
+        Z2VzIjogMSwNCiAgInBhZ2UiOiAxDQp9
+    http_version: 
+  recorded_at: Wed, 12 Jun 2019 19:10:35 GMT
+recorded_with: VCR 5.0.0

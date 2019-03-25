@@ -5,9 +5,9 @@ describe Nfe::Company do
     Nfe.api_key('e12cmDevG5iLhSd9Y7BOpxynL86Detjd2R1D5jsP5UGXA8gwxug0Vojl3H9TIzBpbhI')
   end
 
-  let(:company_params) {
-    company_params = { id: "55df4dc6b6cd9007e4f13ee8", federaltaxnumber: "25953366000106", name: "Empresa de Teste"}
-  }
+  let(:company_params) do
+    { id: "55df4dc6b6cd9007e4f13ee8", federaltaxnumber: "25953366000106", name: "Empresa de Teste"}
+  end
 
   it 'should create a Company' do
     company_params = {name: 'MyCompany',
@@ -30,20 +30,26 @@ describe Nfe::Company do
   end
 
   it 'should list all active companies' do
-    company_list = Nfe::Company.list_all
-    expect(company_list.object).to eq('list')
-    expect(company_list.data.size).to be >= 1
+    VCR.use_cassette("company/list_all") do
+      company_list = Nfe::Company.list_all
+      expect(company_list.object).to eq('list')
+      expect(company_list.data.size).to be >= 1
+    end
   end
 
   it 'should retrieve a company by id' do
-    company = Nfe::Company.retrieve(company_params[:id])
-    expect(company.id).to eq(company_params[:id])
-    expect(company.name).to eq(company_params[:name])
+    VCR.use_cassette("company/retrieve_by_id") do
+      company = Nfe::Company.retrieve(company_params[:id])
+      expect(company.id).to eq(company_params[:id])
+      expect(company.name).to eq(company_params[:name])
+    end
   end
 
   it 'should retrieve a company by federalTaxNumber' do
-    company = Nfe::Company.retrieve(company_params[:federaltaxnumber])
-    expect(company.name).to eq("Company Name")
+    VCR.use_cassette("company/retrieve_by_federal_tax_number") do
+      company = Nfe::Company.retrieve(company_params[:federaltaxnumber])
+      expect(company.name).to eq("Company Name")
+    end
   end
 
   it 'should delete a company' do
@@ -80,5 +86,4 @@ describe Nfe::Company do
   it 'should set digital certificate to a company' do
     skip "To be implemented"
   end
-
 end

@@ -7,12 +7,14 @@ module Nfe
     include ApiOperations::Delete
     include ApiOperations::Update
 
-    def self.url
-      "/v1/companies"
+    api :v2
+
+    def self.endpoint
+      "/companies"
     end
 
-    def url
-      "#{self.class.url}/#{self.id}"
+    def endpoint
+      "#{self.class.endpoint}/#{self.id}"
     end
 
     def self.create_from(params)

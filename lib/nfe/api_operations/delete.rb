@@ -1,15 +1,15 @@
 module Nfe
   module ApiOperations
     module Delete
-      def delete(params)
-        method = :delete
-        response = api_request(url, method, params)
-        # reflesh_object(response)
+      def delete(id)
+        endpoint = "#{self.endpoint}/#{id}"
+        response = api_request endpoint: endpoint, method: :delete,
+          api_version: api_version
         response
       end
 
       def self.included(base)
-        base.extend(Delete)
+        base.extend Delete
       end
     end
   end

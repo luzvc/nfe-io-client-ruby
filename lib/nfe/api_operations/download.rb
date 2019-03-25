@@ -8,9 +8,8 @@ module Nfe
           formatted = { error: message }
           raise NfeError.new(rcode, formatted, formatted, message)
         else
-          url = "#{self.url}/#{nfe_id}/#{file_format}"
-          method = :get
-          api_request_file(url, method)
+          endpoint = "#{self.endpoint}/#{nfe_id}/#{file_format}"
+          api_request_file(endpoint: endpoint, method: :get)
         end
       end
 

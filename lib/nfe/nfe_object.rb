@@ -1,19 +1,38 @@
 module Nfe
   class NfeObject
-    @values
+    include Nfe::ApiVersion
+
+    attr_accessor :values
+
+    class << self
+      def create_from(params)
+        obj = self.new
+        obj.reflesh_object(params)
+      end
+
+      def endpoint
+        "/#{CGI.escape(class_name.downcase)}s"
+      end
+
+      def class_name
+        self.name.split('::')[-1]
+      end
+    end
+
+    def endpoint
+      "#{self.class.endpoint}/#{self.id}"
+    end
+
+    def initialize()
+      @values = {}
+    end
+
     def metaclass
       class << self; self; end
     end
 
-    def self.create_from(params)
-      obj = self.new
-      obj.reflesh_object(params)
-    end
-
     def reflesh_object(params)
-      if params.class == Array
-        params = create_list(params)
-      end
+      params = create_list(params) if params.class == Array
       create_fields(params)
       set_properties(params)
       self
@@ -47,20 +66,11 @@ module Nfe
       end
     end
 
-    def self.url
-      "/v1/#{CGI.escape(class_name.downcase)}s"
-    end
-
-    def url
-      "#{self.class.url}/#{self.id}"
-    end
-
-    def self.class_name
-      self.name.split('::')[-1]
-    end
-
-    def initialize()
-      @values = {}
+    def create_list(array)
+      hash = {}
+      hash[:data] = array
+      hash[:object] = 'list'
+      hash
     end
 
     def method_missing(name, *args)
@@ -99,13 +109,6 @@ module Nfe
 
     def to_s
       JSON.generate(@values)
-    end
-
-    def create_list(array)
-      hash = {}
-      hash[:data] = array
-      hash[:object] = 'list'
-      hash
     end
   end
 end

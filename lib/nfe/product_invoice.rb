@@ -1,26 +1,28 @@
 module Nfe
-  class LegalPeople < NfeObject
+  class ProductInvoice < NfeObject
     include ApiResource
+    include ApiOperations::Create
     include ApiOperations::List
     include ApiOperations::Retrieve
+    include ApiOperations::Cancel
+    include ApiOperations::Download
 
-    api :v1
+    api :v2
 
     def self.company_id(company_id)
       @company_id = company_id
     end
 
     def self.endpoint
-      "/companies/#{@company_id}/legalpeople"
+      "/companies/#{@company_id}/productinvoices"
     end
 
     def endpoint
-      "#{self.class.endpoint}/#{self.id}"
+      self.class.endpoint
     end
 
     def self.create_from(params)
-      obj = self.new
-      obj.reflesh_object(params["legalPeople"])
+      params
     end
   end
 end

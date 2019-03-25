@@ -4,16 +4,18 @@ module Nfe
     include ApiOperations::List
     include ApiOperations::Retrieve
 
+    api :v1
+
     def self.company_id(company_id)
       @company_id = company_id
     end
 
-    def self.url
-      "/v1/companies/#{@company_id}/naturalpeople"
+    def self.endpoint
+      "/companies/#{@company_id}/naturalpeople"
     end
 
-    def url
-      "#{self.class.url}/#{self.id}"
+    def endpoint
+      "#{self.class.endpoint}/#{self.id}"
     end
 
     def self.create_from(params)

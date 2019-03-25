@@ -10,9 +10,22 @@ module Nfe
       params.map { |k,v| "#{k}=#{url_encode(v)}" }.join('&')
     end
 
-    def api_request(url, method, params=nil)
-      url = "#{Nfe.configuration.url}#{url}"
+    def api_request(endpoint:, method:, params: nil, api_version: :v1)
+      url = "#{Nfe.configuration.base_url(api_version)}#{endpoint}"
       api_key = Nfe.access_keys
+
+      # ************************************************************************
+      # LOGGING URL AND METHOD
+      # ************************************************************************
+
+      p "API REQUEST:"
+      p "  METHOD: #{method}"
+      p "  URL: #{url}"
+      p "  API VERSION: #{api_version}"
+      #
+      # ************************************************************************
+      # END LOGGING
+      # ************************************************************************
 
       if method == :get && params
         params_encoded = encode(params)
@@ -53,9 +66,9 @@ module Nfe
       base.extend(ApiResource)
     end
 
-    def api_request_file(url, method, params=nil)
+    def api_request_file(endpoint:, method:, params: nil)
       api_key = Nfe.access_keys
-      url = "#{Nfe.configuration.url}#{url}?api_key=#{api_key}"
+      url = "#{Nfe.configuration.base_url}#{endpoint}?api_key=#{api_key}"
 
       request = RestClient::Request.new(
         method: method,

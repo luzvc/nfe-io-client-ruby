@@ -7,14 +7,18 @@ describe Nfe::NaturalPeople do
   end
 
   it 'should list all NaturalPeople' do
-    natural_peoples_list = Nfe::NaturalPeople.list_all
-    expect(natural_peoples_list.object).to eq('list')
-    expect(natural_peoples_list.data.size).to be >= 1
+    VCR.use_cassette("natural_people/list_all") do
+      natural_peoples_list = Nfe::NaturalPeople.list_all
+      expect(natural_peoples_list.object).to eq('list')
+      expect(natural_peoples_list.data.size).to be >= 1
+    end
   end
 
   it 'should retrieve a NaturalPeople' do
-    natural_people = Nfe::NaturalPeople.retrieve("55eeebf8440c3b0b84ceb1a8")
-    expect(natural_people.id).to eq("55eeebf8440c3b0b84ceb1a8")
-    expect(natural_people.name).to eq("Ricardo Caldeira")
+    VCR.use_cassette("natural_people/retrieve") do
+      natural_people = Nfe::NaturalPeople.retrieve("55eeebf8440c3b0b84ceb1a8")
+      expect(natural_people.id).to eq("55eeebf8440c3b0b84ceb1a8")
+      expect(natural_people.name).to eq("Ricardo Caldeira")
+    end
   end
 end
