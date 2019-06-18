@@ -10,23 +10,35 @@ describe Nfe::Company do
   end
 
   it 'should create a Company' do
-    company_params = {name: 'MyCompany',
-                     federaltaxnumber: 54458287000127,
-                     email: 'empresa@teste.com.br',
-                     openningdate: '21/02/2005',
-                     taxregime: 'LucroReal',
-                     legalnature: 'EmpresaPublica',
-                     municipaltaxnumber: 2}
-    response = {"companies"=>{"id"=>"55e0a00c41c23f0a584b398a", "name"=>"MyCompany", "federalTaxNumber"=>82388034000160,
-                              "email"=>"empresa@teste.com.br", "taxRegime"=>"LucroReal", "legalNature"=>"EmpresaPublica",
-                              "economicActivities"=>[], "municipalTaxNumber"=>2, "rpsSerialNumber"=>"IO", "rpsNumber"=>0,
-                              "environment"=>"Development", "fiscalStatus"=>"Pending", "certificate"=>{"status"=>"Pending"},
-                              "createdOn"=>"2015-09-03T19:43:05.3772349+00:00", "modifiedOn"=>"2015-09-03T19:43:05.3772349+00:00"}}
-    allow(Nfe::Company).to receive(:api_request).and_return(response)
-    company = Nfe::Company.create(company_params)
+    company_params = {
+      company: {
+        name: "Empresa de Teste",
+        tradeName: "Teste co.",
+        federalTaxNumber: 54458287000127,
+        taxRegime: "SimplesNacional",
+        address: {
+          state: "RJ",
+          city: {
+            code: "3304557",
+            name: "Rio de Janeiro"
+          },
+          district: "Botafogo",
+          additionalInformation: "17o andar",
+          street: "Rua Sao Clemente",
+          number: "155",
+          postalCode: "22260-003",
+          country: "Brasil"
+        }
+      }
+    }
 
-    expect(company.name).to eq('MyCompany')
-    expect(company.email).to eq('empresa@teste.com.br')
+    VCR.use_cassette("company/create") do
+      company = Nfe::Company.create(company_params)
+
+      expect(company.name).to eq('Empresa de Teste')
+      expect(company.federalTaxNumber).to eq(54458287000127)
+      expect(company.taxRegime).to eq('SimplesNacional')
+    end
   end
 
   it 'should list all active companies' do
@@ -42,13 +54,6 @@ describe Nfe::Company do
       company = Nfe::Company.retrieve(company_params[:id])
       expect(company.id).to eq(company_params[:id])
       expect(company.name).to eq(company_params[:name])
-    end
-  end
-
-  it 'should retrieve a company by federalTaxNumber' do
-    VCR.use_cassette("company/retrieve_by_federal_tax_number") do
-      company = Nfe::Company.retrieve(company_params[:federaltaxnumber])
-      expect(company.name).to eq("Company Name")
     end
   end
 

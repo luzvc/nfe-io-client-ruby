@@ -4,8 +4,6 @@ module Nfe
       def create(params)
         response = api_request endpoint: endpoint, method: :post,
           params: params, api_version: api_version
-        p "*"*80
-        p response
         create_from response
       end
 

@@ -19,6 +19,11 @@ module Nfe
 
     def self.create_from(params)
       obj = self.new
+      obj.reflesh_object(params["company"])
+    end
+
+    def self.create_list_from(params)
+      obj = self.new
       obj.reflesh_object(params["companies"])
     end
   end

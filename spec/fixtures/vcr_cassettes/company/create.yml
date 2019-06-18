@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.nfse.io/v2/companies
+    body:
+      encoding: UTF-8
+      string: '{"company":{"name":"Empresa de Teste","tradeName":"Teste co.","federalTaxNumber":54458287000127,"taxRegime":"SimplesNacional",address:{"state":"RJ","city":{"code":"3304557","name":"Rio de Janeiro"},"district":"Botafogo","additionalInformation":"17o andar","street":"Rua Sao Clemente","number":"155","postalCode":"22260-003","country":"Brasil"}}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - NFe.io Ruby Client v0.3.2
+      Content-Type:
+      - application/json
+      Authorization:
+      - e12cmDevG5iLhSd9Y7BOpxynL86Detjd2R1D5jsP5UGXA8gwxug0Vojl3H9TIzBpbhI
+      Content-Length:
+      - '191'
+      Host:
+      - api.nfse.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '545'
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      Date:
+      - Tue, 18 Jun 2019 18:20:56 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJjb21wYW55Ijp7InRheFJlZ2ltZSI6IlNpbXBsZXNOYWNpb25hbCIsImFk
+        ZHJlc3MiOnsiY2l0eSI6eyJuYW1lIjoiUmlvIGRlIEphbmVpcm8iLCJjb2Rl
+        IjoiMzMwNDU1NyJ9LCJjb3VudHJ5IjoiQlJBIiwicG9zdGFsQ29kZSI6IjIy
+        MjYwLTAwMyIsIm51bWJlciI6IjE1NSIsInN0cmVldCI6IlJ1YSBTYW8gQ2xl
+        bWVudGUiLCJhZGRpdGlvbmFsSW5mb3JtYXRpb24iOiJBTkRBUjogMiBQQVJU
+        RSIsImRpc3RyaWN0IjoiQm90YWZvZ28iLCJzdGF0ZSI6IlJKIiwiYWRpdGlv
+        bmFsSW5mb3JtYXRpb24iOiIxN28gYW5kYXIifSwibmFtZSI6IkVtcHJlc2Eg
+        ZGUgVGVzdGUiLCJmZWRlcmFsVGF4TnVtYmVyIjo1NDQ1ODI4NzAwMDEyNywi
+        aWQiOiJlMWUyNTIwNjc4Y2I0MzMxODY1NmFlOTA4NjBhZmJlYiJ9fQ==
+    http_version: 
+  recorded_at: Tue, 18 Jun 2019 18:20:56 GMT
+recorded_with: VCR 5.0.0

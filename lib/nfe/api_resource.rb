@@ -18,10 +18,9 @@ module Nfe
       # LOGGING URL AND METHOD
       # ************************************************************************
 
-      p "API REQUEST:"
-      p "  METHOD: #{method}"
-      p "  URL: #{url}"
-      p "  API VERSION: #{api_version}"
+      p "*"*80
+      p "  #{api_version} -> #{method.to_s.upcase}: #{url}"
+      p "*"*80
       #
       # ************************************************************************
       # END LOGGING
@@ -47,6 +46,7 @@ module Nfe
 
       begin
         response = request.execute
+        JSON.parse(response.to_s) unless response.to_s.empty?
       rescue RestClient::ExceptionWithResponse => e
         if rcode = e.http_code and rbody = e.http_body
           rbody = JSON.parse(rbody)
@@ -59,7 +59,6 @@ module Nfe
       rescue RestClient::Exception => e
         raise e
       end
-      JSON.parse(response.to_s)
     end
 
     def self.included(base)

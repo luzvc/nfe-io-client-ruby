@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.nfse.io/v2/companies
+    body:
+      encoding: UTF-8
+      string: '{"name":"MyCompany","federaltaxnumber":54458287000127,"email":"empresa@teste.com.br","openningdate":"21/02/2005","taxregime":"LucroReal","legalnature":"EmpresaPublica","municipaltaxnumber":2}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - NFe.io Ruby Client v0.3.2
+      Content-Type:
+      - application/json
+      Authorization:
+      - e12cmDevG5iLhSd9Y7BOpxynL86Detjd2R1D5jsP5UGXA8gwxug0Vojl3H9TIzBpbhI
+      Content-Length:
+      - '191'
+      Host:
+      - api.nfse.io
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Length:
+      - '55'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Jun 2019 18:20:56 GMT
+      Server:
+      - Kestrel
+      X-Request-Id:
+      - 0HLNJUMG5N95B:00000001
+    body:
+      encoding: UTF-8
+      string: '{"errors":[{"code":40001,"message":"Company is null"}]}'
+    http_version: 
+  recorded_at: Tue, 18 Jun 2019 18:20:56 GMT
+recorded_with: VCR 5.0.0

@@ -4,9 +4,7 @@ module Nfe
       def list_all(params=nil)
         response = api_request endpoint: endpoint, method: :get,
           params: params, api_version: api_version
-        p "*"*80
-        p response
-        create_from response
+        create_list_from response
       end
 
       def self.included(base)
