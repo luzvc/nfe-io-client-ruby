@@ -2,8 +2,7 @@ module Nfe
   class Util
     OBJECT_TYPES = {
         'company' => Nfe::Company,
-        'serviceInvoice' => Nfe::ServiceInvoice,
-        'naturalPeople' => Nfe::NaturalPeople
+        'productInvoice' => Nfe::ProductInvoice
     }
 
     def self.get_object_type(type)

@@ -7,22 +7,27 @@ describe Nfe::ProductInvoice do
   end
 
   it 'should create a ProductInvoice' do
-    customer_params = {borrower: { federalTaxNumber: '01946377198',
-                                   name: 'Ricardo Caldeira',
-                                   email: 'ricardo.nezz@mailinator.com',
-                                   address: {
-                                     country: 'BRA',
-                                     postalCode: '22231110',
-                                     street: 'Rua Do Cliente',
-                                     number: '1310',
-                                     additionalInformation: 'AP 202',
-                                     district: 'Centro',
-                                     city: {
-                                       code: 4204202,
-                                       name: 'Chapecó'
-                                     },
-                                     state: 'SC'
-                                   }}}
+    customer_params = {
+      borrower: {
+        federalTaxNumber: '01946377198',
+        name: 'Ricardo Caldeira',
+        email: 'ricardo.nezz@mailinator.com',
+        address: {
+          country: 'BRA',
+          postalCode: '22231110',
+          street: 'Rua Do Cliente',
+          number: '1310',
+          additionalInformation: 'AP 202',
+          district: 'Centro',
+          city: {
+            code: 4204202,
+            name: 'Chapecó'
+          },
+          state: 'SC'
+        }
+      }
+    }
+
     VCR.use_cassette("product_invoice/create") do
       product_params = {}
       nfe = Nfe::ProductInvoice.create(customer_params.merge(product_params))

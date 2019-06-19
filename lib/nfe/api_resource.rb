@@ -12,19 +12,8 @@ module Nfe
 
     def api_request(endpoint:, method:, params: nil, api_version: :v1)
       url = "#{Nfe.configuration.base_url(api_version)}#{endpoint}"
+      p url
       api_key = Nfe.access_keys
-
-      # ************************************************************************
-      # LOGGING URL AND METHOD
-      # ************************************************************************
-
-      p "*"*80
-      p "  #{api_version} -> #{method.to_s.upcase}: #{url}"
-      p "*"*80
-      #
-      # ************************************************************************
-      # END LOGGING
-      # ************************************************************************
 
       if method == :get && params
         params_encoded = encode(params)
@@ -46,8 +35,10 @@ module Nfe
 
       begin
         response = request.execute
+        p response
         JSON.parse(response.to_s) unless response.to_s.empty?
       rescue RestClient::ExceptionWithResponse => e
+        p e
         if rcode = e.http_code and rbody = e.http_body
           rbody = JSON.parse(rbody)
           rbody = Util.symbolize_names(rbody)
@@ -57,6 +48,7 @@ module Nfe
           raise e
         end
       rescue RestClient::Exception => e
+        p e
         raise e
       end
     end

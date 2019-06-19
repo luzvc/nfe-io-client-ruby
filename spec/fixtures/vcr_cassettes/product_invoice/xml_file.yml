@@ -16,7 +16,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - SXSmZ2f5mVCvOCeKKnE5eOov4ASuvl3kZbw87EXsrqU9boO45MAjUjjzygUXsovgwAz
+      - e12cmDevG5iLhSd9Y7BOpxynL86Detjd2R1D5jsP5UGXA8gwxug0Vojl3H9TIzBpbhI
       Content-Length:
       - '0'
       Host:
@@ -29,14 +29,14 @@ http_interactions:
       Content-Length:
       - '0'
       Date:
-      - Mon, 17 Jun 2019 17:45:29 GMT
+      - Wed, 19 Jun 2019 18:18:56 GMT
       Server:
       - Kestrel
       X-Request-Id:
-      - 0HLMQOK89MI8N:00000002
+      - 0HLNKBMG4A35A:00000002
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Mon, 17 Jun 2019 17:45:29 GMT
+  recorded_at: Wed, 19 Jun 2019 18:18:57 GMT
 recorded_with: VCR 5.0.0
