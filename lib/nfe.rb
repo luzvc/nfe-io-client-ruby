@@ -17,6 +17,7 @@ require "nfe/nfe_object"
 require "nfe/product_invoice"
 require "nfe/state_tax"
 require "nfe/company"
+require "nfe/webhook"
 
 require "nfe/util"
 require "nfe/errors/nfe_error"
