@@ -27,7 +27,7 @@ module Nfe
 
     def self.create_list_from(params)
       obj = self.new
-      obj.reflesh_object(params["stateTaxes"])
+      obj.reflesh_object(params["statetaxes"])
     end
   end
 end

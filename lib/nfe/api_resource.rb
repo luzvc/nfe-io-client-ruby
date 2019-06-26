@@ -12,7 +12,6 @@ module Nfe
 
     def api_request(endpoint:, method:, params: nil, api_version: :v1)
       url = "#{Nfe.configuration.base_url(api_version)}#{endpoint}"
-      p url
       api_key = Nfe.access_keys
 
       if method == :get && params
@@ -35,10 +34,8 @@ module Nfe
 
       begin
         response = request.execute
-        p response
         JSON.parse(response.to_s) unless response.to_s.empty?
       rescue RestClient::ExceptionWithResponse => e
-        p e
         if rcode = e.http_code and rbody = e.http_body
           rbody = JSON.parse(rbody)
           rbody = Util.symbolize_names(rbody)
@@ -48,7 +45,6 @@ module Nfe
           raise e
         end
       rescue RestClient::Exception => e
-        p e
         raise e
       end
     end
@@ -59,7 +55,7 @@ module Nfe
 
     def api_request_file(endpoint:, method:, params: nil)
       api_key = Nfe.access_keys
-      url = "#{Nfe.configuration.base_url}#{endpoint}?api_key=#{api_key}"
+      url = "#{Nfe.configuration.base_url(api_version)}#{endpoint}?api_key=#{api_key}"
 
       request = RestClient::Request.new(
         method: method,
@@ -69,6 +65,7 @@ module Nfe
 
       begin
         response = request.execute
+        JSON.parse(response.to_s) unless response.to_s.empty?
       rescue RestClient::ExceptionWithResponse => e
         if rcode = e.http_code and rbody = e.http_body
           rbody = JSON.parse(rbody)
@@ -81,8 +78,6 @@ module Nfe
       rescue RestClient::Exception => e
         raise e
       end
-
-     response
     end
   end
 end

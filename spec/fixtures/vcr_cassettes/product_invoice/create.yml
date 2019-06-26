@@ -5,8 +5,12 @@ http_interactions:
     uri: https://api.nfse.io/v2/companies/5c98f9b312708e0eccc14c0a/productinvoices
     body:
       encoding: UTF-8
-      string: '{"borrower":{"federalTaxNumber":"01946377198","name":"Ricardo Caldeira","email":"ricardo.nezz@mailinator.com","address":{"country":"BRA","postalCode":"22231110","street":"Rua
-        Do Cliente","number":"1310","additionalInformation":"AP 202","district":"Centro","city":{"code":4204202,"name":"Chapecó"},"state":"SC"}}}'
+      string: '{"consumerType":"finalConsumer","presenceType":"internet","buyer":{"federalTaxNumber":1946377198,"name":"Ricardo
+        Caldeira","email":"ricardo.nezz@mailinator.com","address":{"phone":"11987654321","postalCode":"44850000","street":"Rua
+        Do Cliente","number":"1310","additionalInformation":"AP 202","district":"Centro","city":{"code":"3304557","name":"Rio
+        de Janeiro"},"state":"RJ"},"type":"customer","stateTaxNumberIndicator":"nonTaxPayer"},"items":[{"code":"123","description":"Produto
+        de Teste","ncm":"00000000","cfop":5101,"unit":"UN","codeGTIN":"SEM GTIN","CodeTaxGTIN":"SEM
+        GTIN","quantity":1.0,"unitAmount":120.0,"discountAmount":20.0,"cest":"0000000","tax":{"totalTax":0,"icms":{"origin":"0","csosn":"102"},"pis":{"cst":"01"},"cofins":{"cst":"01"}}}]}'
     headers:
       Accept:
       - application/json
@@ -19,27 +23,31 @@ http_interactions:
       Authorization:
       - e12cmDevG5iLhSd9Y7BOpxynL86Detjd2R1D5jsP5UGXA8gwxug0Vojl3H9TIzBpbhI
       Content-Length:
-      - '313'
+      - '753'
       Host:
       - api.nfse.io
   response:
     status:
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
     headers:
       Content-Length:
-      - '60'
+      - '1168'
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Jun 2019 18:18:41 GMT
+      - Wed, 26 Jun 2019 18:37:39 GMT
       Server:
       - Kestrel
       X-Request-Id:
-      - 0HLNKBMG4A359:00000001
+      - 0HLNOQIUFRC0U:00000001
     body:
       encoding: UTF-8
-      string: '{"errors":[{"code":40001,"message":"buyer cannot be null"}]}'
+      string: '{"batchId":0,"serie":0,"number":0,"operationType":"Outgoing","destination":"None","printType":"None","purposeType":"None","consumerType":"FinalConsumer","presenceType":"Internet","buyer":{"stateTaxNumberIndicator":"NonTaxPayer","taxRegime":"None","address":{"city":{"name":"Rio
+        de Janeiro","code":"3304557"},"state":"RJ","district":"Centro","additionalInformation":"AP
+        202","street":"Rua Do Cliente","number":"1310","postalCode":"44850000","phone":"11987654321"},"type":"Customer","id":"86c58d6f5bb84769a42396896e4c538f","name":"Ricardo
+        Caldeira","federalTaxNumber":1946377198,"email":"ricardo.nezz@mailinator.com"},"items":[{"taxUnitAmount":0.0,"quantityTax":0.0,"totalAmount":0.0,"unitAmount":120.0,"quantity":1.0,"totalIndicator":false,"cfop":5101,"tax":{"totalTax":0.0,"icms":{"baseTaxFCPSTAmount":0.0,"fcpstRetAmount":0.0,"fcpstRetRate":0.0,"fcpstAmount":0.0,"fcpstRate":0.0,"snCreditAmount":0.0,"snCreditRate":0.0,"csosn":"102","origin":"0"},"pis":{"cst":"01"},"cofins":{"cst":"01"}},"discountAmount":20.0,"cest":"0000000","unit":"UN","ncm":"00000000","description":"Produto
+        de Teste","codeGTIN":"SEM GTIN","code":"123"}],"id":"75e916d92a3c4f01add57c06d12a0683"}'
     http_version: 
-  recorded_at: Wed, 19 Jun 2019 18:18:42 GMT
+  recorded_at: Wed, 26 Jun 2019 18:37:40 GMT
 recorded_with: VCR 5.0.0

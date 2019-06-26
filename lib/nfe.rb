@@ -12,6 +12,7 @@ require "nfe/api_operations/list"
 require "nfe/api_operations/retrieve"
 require "nfe/api_operations/update"
 require "nfe/api_operations/download"
+require "nfe/api_operations/ping"
 
 require "nfe/nfe_object"
 require "nfe/product_invoice"
